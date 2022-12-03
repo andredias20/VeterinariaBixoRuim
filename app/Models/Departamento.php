@@ -10,6 +10,12 @@ class Departamento extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name'
+        'nome',
     ];
+
+    /**
+     * The table associated with the model.
+     * @var string
+     */
+    protected $table = 'departamentos';
 }
