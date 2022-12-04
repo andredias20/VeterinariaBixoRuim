@@ -9,7 +9,16 @@ class DepartamentoController extends Controller
 {
 
     public function index(){
-        $list = Departamento::all();
+        return Departamento::all();
     }
+
+    public function insert(Request $request){
+         $item =  Departamento::create(
+             ['nome' => $request->string('nome')]
+         );
+         return $item;
+    }
+
+
 
 }

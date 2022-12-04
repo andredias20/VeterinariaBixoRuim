@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Console\Concerns\HasParameters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Departamento extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'nome',
-    ];
+    protected $table = 'departamentos';
 
     /**
-     * The table associated with the model.
-     * @var string
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
      */
-    protected $table = 'departamentos';
+    protected $fillable = ['nome'];
+
+
+
+
 }
