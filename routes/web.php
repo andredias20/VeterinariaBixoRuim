@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/pass', function (){
+    return view('createDepartment');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +25,14 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/cadastro', function (){
+   return view('cadastro');
+})->middleware(['auth', 'verified'])->name('cadastro');
+
+Route::get('/venda', function (){
+    return view('venda');
+})->middleware(['auth', 'verified'])->name('venda');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
