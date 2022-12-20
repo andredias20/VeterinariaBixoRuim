@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/pass', function (){
-    return view('admin');
+    return view('cadastros/admin');
 });
 
 Route::get('/', function () {
@@ -43,12 +43,14 @@ Route::get('/venda', function (){
 //Rotas direcionando a cadastros
 Route::prefix('/cadastro')->group(function (){
     Route::prefix('/departamento')->group(function (){
-            Route::get('/', [DepartamentoController::class, 'index'])->name('departmento.index');
-            Route::post('/', [DepartamentoController::class, 'insert'])->name('departmento.insert');
-            Route::patch('/{id}', [DepartamentoController::class, 'update'])->name('departmento.update');
+            Route::get('/', [DepartamentoController::class, 'index'])->name('departamento.index');
+            Route::get('/create', [DepartamentoController::class, 'formCreate'])->name('departamento.form.insert');
+            Route::get('/update', [DepartamentoController::class, 'formUpdate'])->name('departamento.form.update');
+
+            Route::post('/', [DepartamentoController::class, 'insert'])->name('departamento.insert');
+            Route::patch('/{id}', [DepartamentoController::class, 'update'])->name('departamento.update');
             Route::delete('/{id}', [DepartamentoController::class, 'destroy'])->name('departamento.destroy');
     });
-
 });
 
 
