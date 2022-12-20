@@ -9,7 +9,8 @@ class DepartamentoController extends Controller
 {
 
     public function index(){
-        return Departamento::all();
+        $deptartmentos = Departamento::all();
+        return view('cadastros/departamento/create', ['departamentos' => $deptartmentos]);
     }
 
     public function insert(Request $request){

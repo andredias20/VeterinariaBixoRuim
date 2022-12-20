@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/pass', function (){
-    return view('createDepartment');
+    return view('admin');
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//Rotas direcionando ao Dashboard variado
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,7 +38,21 @@ Route::get('/cadastro', function (){
 Route::get('/venda', function (){
     return view('venda');
 })->middleware(['auth', 'verified'])->name('venda');
+//-----------------------------------------------------
 
+//Rotas direcionando a cadastros
+Route::prefix('/cadastro')->group(function (){
+    Route::prefix('/departamento')->group(function (){
+            Route::get('/', [DepartamentoController::class, 'index'])->name('departmento.index');
+            Route::post('/', [DepartamentoController::class, 'insert'])->name('departmento.insert');
+            Route::patch('/{id}', [DepartamentoController::class, 'update'])->name('departmento.update');
+            Route::delete('/{id}', [DepartamentoController::class, 'destroy'])->name('departamento.destroy');
+    });
+
+});
+
+
+// Rotas de Autenticação
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
