@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{route('departamento.index')}}">
-                {{ __('Departamento')}}
+            <a href="{{route('produto.index')}}">
+                {{ __('Produto')}}
             </a>
             {{__('/')}}
-            <a href="{{route('departamento.form.insert')}}">
+            <a href="{{route('produto.form.insert')}}">
                 {{__('Inserir')}}
             </a>
         </h2>
@@ -15,15 +15,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{route('departamento.index')}}">
+                    <a href="{{route('produto.index')}}">
 
                     </a>
-                    <form action="{{route('departamento.insert')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('produto.insert')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-col">
                             <div>
-                                <label for="nomeInput">Nome departamento: </label>
+                                <label for="nomeInput">Nome: </label>
                                 <input type="text" name="nome" id="nomeInput">
+                            </div>
+                            <div>
+                                <label for="depInput">Nome: </label>
+                                <input type="text" name="departamento" id="depInput">
+                            </div>
+                            <div>
+                                <label for="precoInput">Nome: </label>
+                                <input type="text" name="preco" id="precoInput">
                             </div>
                             <div>
                                 <x-primary-button>

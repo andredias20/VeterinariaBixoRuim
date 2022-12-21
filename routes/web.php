@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\TipoAnimalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,16 +44,37 @@ Route::get('/venda', function (){
 
 //Rotas direcionando a cadastros
 Route::prefix('/cadastro')->group(function (){
-    Route::prefix('/departamento')->group(function (){
-            Route::get('/', [DepartamentoController::class, 'index'])->name('departamento.index');
-            Route::get('/create', [DepartamentoController::class, 'formCreate'])->name('departamento.form.insert');
-            Route::get('/update', [DepartamentoController::class, 'formUpdate'])->name('departamento.form.update');
+    Route::prefix('/departamento')->controller(DepartamentoController::class)->group(function (){
+            Route::get('/index', 'index')->name('departamento.index');
+            Route::get('/create', 'formCreate')->name('departamento.form.insert');
+            Route::get('/update/{id}', 'formUpdate')->name('departamento.form.update');
 
-            Route::post('/', [DepartamentoController::class, 'insert'])->name('departamento.insert');
-            Route::patch('/{id}', [DepartamentoController::class, 'update'])->name('departamento.update');
-            Route::delete('/{id}', [DepartamentoController::class, 'destroy'])->name('departamento.destroy');
+            Route::post('/', 'insert')->name('departamento.insert');
+            Route::put('/{id}', 'update')->name('departamento.update');
+            Route::delete('/{id}', 'destroy')->name('departamento.destroy');
     });
-});
+
+    Route::prefix('/tipo-animal')->controller(TipoAnimalController::class)->group(function (){
+            Route::get('/index', 'index')->name('tipo-animal.index');
+            Route::get('/create', 'formCreate')->name('tipo-animal.form.insert');
+            Route::get('/update/{id}', 'formUpdate')->name('tipo-animal.form.update');
+
+            Route::post('/', 'insert')->name('tipo-animal.insert');
+            Route::put('/{id}', 'update')->name('tipo-animal.update');
+            Route::delete('/{id}', 'destroy')->name('tipo-animal.destroy');
+    });
+
+    Route::prefix('/produto')->controller(ProdutoController::class)->group(function (){
+        Route::get('/index', 'index')->name('produto.index');
+        Route::get('/create', 'formCreate')->name('produto.form.insert');
+        Route::get('/update/{id}', 'formUpdate')->name('produto.form.update');
+
+        Route::post('/', 'insert')->name('produto.insert');
+        Route::put('/{id}', 'update')->name('produto.update');
+        Route::delete('/{id}', 'destroy')->name('produto.destroy');
+    });
+
+})->middleware(['auth', 'verified']);
 
 
 // Rotas de Autenticação

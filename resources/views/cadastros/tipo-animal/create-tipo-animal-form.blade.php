@@ -1,25 +1,32 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="{{route('departamento.index')}}">
-            {{ __('Departamento')}}
-        </a>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <a href="{{route('tipo-animal.index')}}">
+                {{ __('Tipo Animal')}}
+            </a>
+            {{__('/')}}
+            <a href="{{route('tipo-animal.form.insert')}}">
+                {{__('Inserir')}}
+            </a>
+        </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{route('departamento.update', $id->id)}}" method="POST">
+                    <a href="{{route('tipo-animal.index')}}">
+
+                    </a>
+                    <form action="{{route('tipo-animal.insert')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="flex flex-col">
                             <div>
-                                <label for="nomeInput">Nome departamento: </label>
-                                <input type="text" name="nome" id="nomeInput" value="{{$id->nome}}">
+                                <label for="nomeInput">Nome do Animal: </label>
+                                <input type="text" name="nome" id="nomeInput">
                             </div>
                             <div>
                                 <x-primary-button>
-                                    <input type="hidden" name="id" value="{{$id->id}}">
                                     <input type="submit"/>
                                 </x-primary-button>
                             </div>

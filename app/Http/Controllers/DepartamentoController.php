@@ -14,19 +14,31 @@ class DepartamentoController extends Controller
     }
 
     public function insert(Request $request){
-         $item =  Departamento::create(
-             ['nome' => $request->input('nome')]
-         );
+        $request->validate([
+           'nome' => 'required'
+        ]);
 
-         return dd($item);
+        Departamento::create($request->post());
+        return redirect()->route('departamento.index')->with('Sucess', 'Depataramento foi criado com sucesso');
     }
 
-    public function formUpdate(Request $request){
-        $item = Departamento::query()->where('id', '==' , $request->string('id'));
-
-        return view('cadastros/departamento/update-departamento-form',['editItem' =>$item]);
+    public function update(Request $request, Departamento $id){
+        $request->validate([
+            'nome' => 'required',
+            'id' => 'required'
+        ]);
+        $id->fill($request->post())->save();
+        return redirect()->route('departamento.index')->with('Sucess', 'Depataramento foi editado com sucesso');
     }
 
+    public function destroy(Departamento $id){
+        $id->delete();
+        return redirect()->route('departamento.index')->with('Sucess', 'Depataramento foi deletado com sucesso');
+    }
+
+    public function formUpdate(Departamento $id){
+        return view('cadastros/departamento/update-departamento-form', compact('id'));
+    }
 
     public function formCreate(){
         return view('cadastros/departamento/create-departamento-form');

@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <h1 class="text-center"> Tabela: Departamento</h1>
+    <h1 class="text-center"> Tabela: Tipo Animal</h1>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -22,14 +22,14 @@
                             </thead>
                             <tbody>
 
-                            @foreach($departamentos as $departamento)
+                            @foreach($items as $item)
 
                                 <tr>
-                                    <th scope="row">{{$departamento->id}}</th>
-                                    <td> {{$departamento->nome}}</td>
+                                    <th scope="row">{{$item->id}}</th>
+                                    <td> {{$item->nome}}</td>
                                     <th>
                                         @csrf
-                                        <a href="{{route('departamento.form.update' ,$departamento->id)}}">
+                                        <a href="{{route('tipo-animal.form.update' ,$item->id)}}">
 
                                             <x-secondary-button>
                                                 editar
@@ -39,7 +39,7 @@
 
                                     <th>
 
-                                        <form action="{{route('departamento.destroy',$departamento->id)}}" method="post">
+                                        <form action="{{route('tipo-animal.destroy',$item->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <x-danger-button>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="text-md-center mt-3 m-4">
-                        <a href="{{route('departamento.form.insert')}}">
+                        <a href="{{route('tipo-animal.form.insert')}}">
                             <x-primary-button>
                                 Inserir
                             </x-primary-button>
