@@ -25,6 +25,11 @@
                         <button class="btn btn-dark">Produto</button>
                     </a>
                 </div>
+                <div class="p-6 text-gray-900">
+                    <a href="{{route('cliente.index')}}">
+                        <button class="btn btn-dark">Cliente</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
