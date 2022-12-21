@@ -18,6 +18,7 @@
                                 <th scope="col">Id</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Departamento</th>
+                                <th scope="col">Animal</th>
                                 <th scope="col">Preco</th>
 
                             </tr>
@@ -31,7 +32,7 @@
                                     <th scope="row">{{$item->id}}</th>
                                     <td> {{$item->nome}}</td>
                                     <td>{{$item->departamento_id}}</td>
-                                    <th>{{$item->preco}}</th>
+                                    <th>{{'R$ '.number_format($item->preco, 2, ".", ",")}}</th>
                                     <th>
                                         @csrf
                                         <a href="{{route('produto.form.update' ,$item->id)}}">

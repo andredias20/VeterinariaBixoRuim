@@ -16,5 +16,5 @@ class Produto extends Model
      *
      * @var array<string>
      */
-    protected $fillable = ['nome', 'departamento_id', 'preco'];
+    protected $fillable = ['nome', 'departamento_id', 'tipo_animal_id', 'preco'];
 }

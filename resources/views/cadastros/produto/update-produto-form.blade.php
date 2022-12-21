@@ -1,4 +1,4 @@
-@php use App\Models\Departamento; @endphp
+@php use App\Models\Departamento;use App\Models\TipoAnimal; @endphp
 <x-app-layout>
     <x-slot name="header">
         <a href="{{route('produto.index')}}">
@@ -16,20 +16,31 @@
                         <div class="flex flex-col">
                             <div>
                                 <label for="nomeInput">Nome: </label>
-                                <input type="text" name="nome" id="nomeInput">
+                                <input type="text" name="nome" id="nomeInput" value="{{$id->nome}}">
                             </div>
                             <div>
                                 @php $depList = Departamento::all() @endphp
                                 <label for="depInput">Departamento: </label>
                                 <select id="depInput" name="departamento_id">
                                     @foreach($depList as $depItem)
-                                        <option value="{{$depItem->id}}">{{$depItem->nome}}</option>
+                                        <option @if($id->departamento_id == $depItem->id) selected
+                                                @endif value="{{$depItem->id}}">{{$depItem->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                @php $tipoList = TipoAnimal::all() @endphp
+                                <label for="tipoInput">Animal: </label>
+                                <select id="tipoInput" name="tipo_animal_id">
+                                    @foreach($tipoList as $tipoItem)
+                                        <option @if($id->departamento_id == $tipoItem->id) selected
+                                                @endif value="{{$tipoItem->id}}">{{$tipoItem->nome}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div>
                                 <label for="precoInput">Preço: </label>
-                                <input type="number" min="0.01" name="preco" id="precoInput">
+                                <input type="number" min="0.00" name="preco" id="precoInput" value="{{$id->preco}}">
                             </div>
                             <div>
                                 <x-primary-button>

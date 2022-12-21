@@ -47,7 +47,7 @@ Route::get('/venda', function (){
 //Rotas direcionando a cadastros
 Route::prefix('/cadastro')->group(function (){
     Route::prefix('/departamento')->controller(DepartamentoController::class)->group(function (){
-            Route::get('/index', 'index')->name('departamento.index');
+            Route::get('/', 'index')->name('departamento.index');
             Route::get('/create', 'formCreate')->name('departamento.form.insert');
             Route::get('/update/{id}', 'formUpdate')->name('departamento.form.update');
 
@@ -57,7 +57,7 @@ Route::prefix('/cadastro')->group(function (){
     });
 
     Route::prefix('/tipo-animal')->controller(TipoAnimalController::class)->group(function (){
-            Route::get('/index', 'index')->name('tipo-animal.index');
+            Route::get('/', 'index')->name('tipo-animal.index');
             Route::get('/create', 'formCreate')->name('tipo-animal.form.insert');
             Route::get('/update/{id}', 'formUpdate')->name('tipo-animal.form.update');
 
@@ -67,7 +67,7 @@ Route::prefix('/cadastro')->group(function (){
     });
 
     Route::prefix('/produto')->controller(ProdutoController::class)->group(function (){
-        Route::get('/index', 'index')->name('produto.index');
+        Route::get('/', 'index')->name('produto.index');
         Route::get('/create', 'formCreate')->name('produto.form.insert');
         Route::get('/update/{id}', 'formUpdate')->name('produto.form.update');
 

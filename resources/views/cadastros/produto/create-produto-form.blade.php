@@ -1,4 +1,4 @@
-@php use App\Models\Departamento; @endphp
+@php use App\Models\Departamento;use App\Models\TipoAnimal; @endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -36,8 +36,17 @@
                                 </select>
                             </div>
                             <div>
+                                @php $tipoList = TipoAnimal::all() @endphp
+                                <label for="tipoInput">Animal: </label>
+                                <select id="tipoInput" name="tipo_animal_id">
+                                    @foreach($tipoList as $tipoItem)
+                                        <option value="{{$tipoItem->id}}">{{$tipoItem->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
                                 <label for="precoInput">Preço: </label>
-                                <input type="number" min="0.01" name="preco" id="precoInput">
+                                <input type="number" min="0.00" name="preco" id="precoInput">
                             </div>
                             <div>
                                 <x-primary-button>
