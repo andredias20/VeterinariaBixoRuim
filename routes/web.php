@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TipoAnimalController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,8 @@ Route::get('/cadastro', function (){
 })->middleware(['auth', 'verified'])->name('cadastro');
 
 Route::get('/venda', function (){
-    return view('venda');
+    $items = Produto::all();
+    return view('venda', compact('items'));
 })->middleware(['auth', 'verified'])->name('venda');
 //-----------------------------------------------------
 
@@ -74,7 +76,10 @@ Route::prefix('/cadastro')->group(function (){
         Route::delete('/{id}', 'destroy')->name('produto.destroy');
     });
 
+
+
 })->middleware(['auth', 'verified']);
+
 
 
 // Rotas de Autenticação

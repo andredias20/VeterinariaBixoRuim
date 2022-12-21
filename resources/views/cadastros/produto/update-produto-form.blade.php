@@ -1,3 +1,4 @@
+@php use App\Models\Departamento; @endphp
 <x-app-layout>
     <x-slot name="header">
         <a href="{{route('produto.index')}}">
@@ -14,8 +15,21 @@
                         @method('PUT')
                         <div class="flex flex-col">
                             <div>
-                                <label for="nomeInput">Nome produto: </label>
-                                <input type="text" name="nome" id="nomeInput" value="{{$id->nome}}">
+                                <label for="nomeInput">Nome: </label>
+                                <input type="text" name="nome" id="nomeInput">
+                            </div>
+                            <div>
+                                @php $depList = Departamento::all() @endphp
+                                <label for="depInput">Departamento: </label>
+                                <select id="depInput" name="departamento_id">
+                                    @foreach($depList as $depItem)
+                                        <option value="{{$depItem->id}}">{{$depItem->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="precoInput">Preço: </label>
+                                <input type="number" min="0.01" name="preco" id="precoInput">
                             </div>
                             <div>
                                 <x-primary-button>

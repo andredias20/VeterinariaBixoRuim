@@ -1,3 +1,4 @@
+@php use App\Models\Departamento; @endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -26,12 +27,17 @@
                                 <input type="text" name="nome" id="nomeInput">
                             </div>
                             <div>
-                                <label for="depInput">Nome: </label>
-                                <input type="text" name="departamento" id="depInput">
+                                @php $depList = Departamento::all() @endphp
+                                <label for="depInput">Departamento: </label>
+                                <select id="depInput" name="departamento_id">
+                                    @foreach($depList as $depItem)
+                                        <option value="{{$depItem->id}}">{{$depItem->nome}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div>
-                                <label for="precoInput">Nome: </label>
-                                <input type="text" name="preco" id="precoInput">
+                                <label for="precoInput">Preço: </label>
+                                <input type="number" min="0.01" name="preco" id="precoInput">
                             </div>
                             <div>
                                 <x-primary-button>

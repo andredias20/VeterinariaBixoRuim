@@ -30,7 +30,7 @@
                                 <tr>
                                     <th scope="row">{{$item->id}}</th>
                                     <td> {{$item->nome}}</td>
-                                    <td>{{$item->departamento}}</td>
+                                    <td>{{$item->departamento_id}}</td>
                                     <th>{{$item->preco}}</th>
                                     <th>
                                         @csrf
@@ -43,7 +43,7 @@
 
                                     <th>
 
-                                        <form action="{{route('produto.destroy',$departamento->id)}}" method="post">
+                                        <form action="{{route('produto.destroy',$item->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <x-danger-button>
